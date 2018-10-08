@@ -18,8 +18,13 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
 });
 
-setInterval(() => {
+wss.onmessage = function(event) {
+    var message = event.data;
+ 
   wss.clients.forEach((client) => {
-    client.send(new Date().toTimeString());
+    client.send(message);
   });
-}, 1000);
+
+  };
+
+
