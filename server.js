@@ -18,13 +18,14 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
 });
 
-wss.onmessage = function(event) {
-    var message = event.data;
- 
-  wss.clients.forEach((client) => {
-    client.send(message);
+
+ wss.on('message', function(message) {
+    //broadcast the message to all the clients
+    wss.clients.forEach(function(client) {
+      client.send(message.utf8Data);
+    });
   });
 
-  };
+
 
 
