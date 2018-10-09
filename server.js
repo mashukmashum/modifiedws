@@ -12,16 +12,20 @@ const server = express()
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({ server });
+wss.broadcast = function(data, sender) {
+  wss.clients.forEach(function(client) {
+    if (client !== sender) {
+      client.send(data)
+    }
+  })
+}
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
   ws.on('close', () => console.log('Client disconnected'));
   
   ws.on('message', (mess) => {
-  console.log('Client message');
-   wss.clients.forEach((client) => {
-    client.send(mess);
-  });
+ wss.broadcast(mess, ws);
 });
 
 });
