@@ -16,15 +16,17 @@ const wss = new SocketServer({ server });
 wss.on('connection', (ws) => {
   console.log('Client connected');
   ws.on('close', () => console.log('Client disconnected'));
-});
-
-
- wss.on('message', (mess) => {
+  
+  ws.on('message', (mess) => {
   console.log('Client message');
    wss.clients.forEach((client) => {
     client.send(mess);
   });
 });
 
+});
+
+
+ 
 
 
