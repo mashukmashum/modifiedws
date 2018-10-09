@@ -21,9 +21,10 @@ wss.on('connection', (ws) => {
 
  wss.on('message', function(message) {
     //broadcast the message to all the clients
-    wss.clients.forEach(function(client) {
-      client.send(message.utf8Data);
-    });
+   // wss.clients.forEach(function(client) {
+  //    client.send(message.utf8Data);
+  //  });
+   ws.send('echo: ' + message);
   });
 
 
