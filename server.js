@@ -19,14 +19,12 @@ wss.on('connection', (ws) => {
 });
 
 
- wss.on('message', function(message) {
-    //broadcast the message to all the clients
-   // wss.clients.forEach(function(client) {
-  //    client.send(message.utf8Data);
-  //  });
-   wss.send('echo: ' + message);
+ wss.on('message', (mess) => {
+  console.log('Client message');
+   wss.clients.forEach((client) => {
+    client.send(mess);
   });
-
+});
 
 
 
