@@ -24,7 +24,7 @@ wss.on('connection', (ws) => {
    // wss.clients.forEach(function(client) {
   //    client.send(message.utf8Data);
   //  });
-   ws.send('echo: ' + message);
+   wss.send('echo: ' + message);
   });
 
 
