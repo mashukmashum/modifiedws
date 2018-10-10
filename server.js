@@ -1,6 +1,6 @@
 'use strict';
 const MongoClient = require('mongodb').MongoClient;
-const urldb=process.env.urldb;
+const urldb=process.env.URLDB;
 // Connect to the db
 
 
