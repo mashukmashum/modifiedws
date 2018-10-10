@@ -1,4 +1,8 @@
 'use strict';
+const MongoClient = require('mongodb').MongoClient;
+const urldb=process.env.urldb;
+// Connect to the db
+
 
 const express = require('express');
 const SocketServer = require('ws').Server;
@@ -25,7 +29,21 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
   
   ws.on('message', (mess) => {
- wss.broadcast(mess, ws);
+    var obj = JSON.parse(mess);
+    if(obj.type=="am"){
+ wss.broadcast(obj.message, ws);}
+    if(obj.type="ures"){
+    MongoClient.connect(urldb, function (err, db) {
+    
+    db.collection('users', function (err, collection) {
+        db.collection.update({"user":obj.user}, {$set : {obj.qn:obj.ans}}, {upsert:true, multi:true});
+       
+        
+
+    });
+    });
+    }
+    
 });
 
 });
