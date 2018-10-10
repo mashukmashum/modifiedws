@@ -31,7 +31,7 @@ wss.on('connection', (ws) => {
   ws.on('message', (mess) => {
     var obj = JSON.parse(mess);
     if(obj.type=="am"){
- wss.broadcast(obj.message, ws);}
+ wss.broadcast(obj.mesdata, ws);}
     if(obj.type="ures"){
     MongoClient.connect(urldb, function (err, db) {
     
