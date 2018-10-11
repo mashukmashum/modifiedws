@@ -35,8 +35,8 @@ wss.on('connection', (ws) => {
    
     MongoClient.connect(urldb, function (err, dab) {
     const myAwesomeDB = dab.db('wsapp')
-    dab.collection('users', function (err, collection) {
-        dab.collection.update({"user":"VVV"}, {$set : {"QN":1}}, {upsert:true, multi:true});
+    myAwesomeDB.collection('users', function (err, collection) {
+        myAwesomeDB.collection.update({"user":"VVV"}, {$set : {"QN":1}}, {upsert:true, multi:true});
        
         
 
