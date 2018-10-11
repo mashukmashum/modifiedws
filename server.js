@@ -29,7 +29,7 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
   
   ws.on('message', (mess) => {
-    var obj = JSON.parse(mess);
+    var obj = JSON.parse(mess.data);
     if(obj.type=="am"){
  wss.broadcast(obj.mesdata, ws);}
   
