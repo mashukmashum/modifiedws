@@ -30,19 +30,19 @@ wss.on('connection', (ws) => {
   
   ws.on('message', (mess) => {
     var obj = JSON.parse(mess);
-    if(obj.type=="am"){
- wss.broadcast(obj.mesdata, ws);}
-    if(obj.type=="ures"){
+ 
+ wss.broadcast(obj.mesdata, ws);
+   
     MongoClient.connect(urldb, function (err, db) {
     
     db.collection('users', function (err, collection) {
-        db.collection.update({"user":obj.user}, {$set : {obj.qn:obj.ans}}, {upsert:true, multi:true});
+        db.collection.update({"user":"VVV"}, {$set : {"QN":1}}, {upsert:true, multi:true});
        
         
 
     });
     });
-    }
+    
     
 });
 
