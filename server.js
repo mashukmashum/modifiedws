@@ -1,6 +1,6 @@
 'use strict';
 const MongoClient = require('mongodb').MongoClient;
-const urldb="mongodb://mashum:mashuk123@ds127293.mlab.com:27293/wsapp";
+const urldb=process.env.URLDB;
 // Connect to the db
 
 
@@ -29,21 +29,20 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
   
   ws.on('message', (mess) => {
-
- 
- wss.broadcast(mess, ws);
    
-    MongoClient.connect(urldb, function (err, dab) {
-    const myAwesomeDB = dab.db('wsapp')
-    myAwesomeDB.collection('users', function (err, collection) {
-        myAwesomeDB.collection.update({"user":"VVV"}, {$set : {"QN":1}}, {upsert:true, multi:true});
+    
+ wss.broadcast(mess, ws);
+
+    MongoClient.connect(urldb, function (err, db) {
+    
+    db.collection('users', function (err, collection) {
+        db.collection.update({"user":"VVV"}, {$set : {"QN":1}}, {upsert:true, multi:true});
        
         
 
     });
     });
-    
-    
+ 
 });
 
 });
