@@ -39,7 +39,7 @@ if(obj.type=="ur"){
   var db = client.db('wsapp');
     
 
-        db.collection('users').updateOne({"user":obj.uname}, {$set : {obj.qn:obj.qres}}, {upsert:true, multi:true});
+        db.collection('users').updateOne({"user":obj['uname']}, {$set : {obj['qn']:obj['qres']}}, {upsert:true, multi:true});
        
         
 
