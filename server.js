@@ -35,7 +35,7 @@ wss.on('connection', (ws) => {
     var uname= obj.uname;
     var qn= obj.qn;
     var qres= obj.qres;
-    
+    console.log('mtype');
     if(mtype=="am"){
  wss.broadcast(mess, ws);}
 
