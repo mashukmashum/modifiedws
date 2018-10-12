@@ -38,8 +38,8 @@ wss.on('connection', (ws) => {
   // Client returned
   var db = client.db('wsapp');
     
-    db.collection('users', function (err, collection) {
-        db.collection.update({"user":"VVV"}, {$set : {"QN":1}}, {upsert:true, multi:true});
+
+        db.collection('users').updateOne({"user":"VVV"}, {$set : {"QN":1}}, {upsert:true, multi:true});
        
         
 
