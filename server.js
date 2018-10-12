@@ -30,16 +30,21 @@ wss.on('connection', (ws) => {
   
   ws.on('message', (mess) => {
    var obj = JSON.parse(mess.data);
-    if(obj['type']=="am"){
+    var mtype= obj['type'];
+    var uname= obj['uname'];
+    var qn= obj['qn'];
+    var qres= obj['qres'];
+    
+    if(mtype=="am"){
  wss.broadcast(mess, ws);}
 
-if(obj['type']=="ur"){
+if(mtype=="ur"){
   MongoClient.connect(urldb, (err, client) => {
   // Client returned
   var db = client.db('wsapp');
     
 
-        db.collection('users').updateOne({"user":obj['uname']}, {$set : {obj['qn']:obj['qres']}}, {upsert:true, multi:true});
+        db.collection('users').updateOne({"user":uname}, {$set : {qn:qres}}, {upsert:true, multi:true});
        
         
 
