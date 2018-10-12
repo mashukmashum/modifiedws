@@ -30,10 +30,10 @@ wss.on('connection', (ws) => {
   
   ws.on('message', (mess) => {
    var obj = JSON.parse(mess.data);
-    var mtype= obj['type'];
-    var uname= obj['uname'];
-    var qn= obj['qn'];
-    var qres= obj['qres'];
+    var mtype= obj.type;
+    var uname= obj.uname;
+    var qn= obj.qn;
+    var qres= obj.qres;
     
     if(mtype=="am"){
  wss.broadcast(mess, ws);}
