@@ -30,10 +30,10 @@ wss.on('connection', (ws) => {
   
   ws.on('message', (mess) => {
    var obj = JSON.parse(mess.data);
-    if(obj.type=="am"){
+    if(obj['type']=="am"){
  wss.broadcast(mess, ws);}
 
-if(obj.type=="ur"){
+if(obj['type']=="ur"){
   MongoClient.connect(urldb, (err, client) => {
   // Client returned
   var db = client.db('wsapp');
