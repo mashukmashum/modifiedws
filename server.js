@@ -29,7 +29,7 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
   
   ws.on('message', (mess) => {
-   var objm = mess.data;
+   var objm = mess;
     var obj=JSON.parse(objm);
     var mtype= obj.type;
     var uname= obj.uname;
