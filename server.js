@@ -29,22 +29,23 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
   
   ws.on('message', (mess) => {
-   
-    
- wss.broadcast(mess, ws);
+   var obj = JSON.parse(mess.data);
+    if(obj.type=="am"){
+ wss.broadcast(mess, ws);}
 
-
+if(obj.type=="ur"){
   MongoClient.connect(urldb, (err, client) => {
   // Client returned
   var db = client.db('wsapp');
     
 
-        db.collection('users').updateOne({"user":"VVV"}, {$set : {"QN":1}}, {upsert:true, multi:true});
+        db.collection('users').updateOne({"user":obj.uname}, {$set : {"QN"+obj.qn.toString():obj.qres}}, {upsert:true, multi:true});
        
         
 
     });
     });
+  }
  
 });
 
