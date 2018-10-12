@@ -33,7 +33,10 @@ wss.on('connection', (ws) => {
     
  wss.broadcast(mess, ws);
 
-    MongoClient.connect(urldb, function (err, db) {
+
+  MongoClient.connect(urldb, (err, client) => {
+  // Client returned
+  var db = client.db('wsapp');
     
     db.collection('users', function (err, collection) {
         db.collection.update({"user":"VVV"}, {$set : {"QN":1}}, {upsert:true, multi:true});
