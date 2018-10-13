@@ -2,5 +2,10 @@
   "name": "Node.js WebSocket Example",
   "description": "Part of the Using WebSockets on Heroku Tutorial",
   "repository": "https://github.com/heroku-examples/node-websockets",
-  "keywords": ["node", "websocket"]
+  "keywords": ["node", "websocket"],
+  "env":{
+  "URLDB":{
+    "description":"DB Config"
+  }
+  }
 }
