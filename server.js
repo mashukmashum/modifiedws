@@ -46,7 +46,7 @@ if(mtype=="ur"){
     
 var query={};
     query[qn]=qres;
-        db.collection('users').updateOne({"user":uname}, {$set : query}}, {upsert:true, multi:true});
+        db.collection('users').updateOne({"user":uname}, {$set : query}, {upsert:true, multi:true});
        
         
 
