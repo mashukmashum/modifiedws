@@ -45,7 +45,7 @@ if(mtype=="ur"){
   var db = client.db('wsapp');
     
 
-        db.collection('users').updateOne({"user":uname}, {$set : {qn.toString():qres}}, {upsert:true, multi:true});
+        db.collection('users').updateOne({"user":uname}, {$set : {qn:qres}}, {upsert:true, multi:true});
        
         
 
