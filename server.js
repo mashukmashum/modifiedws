@@ -44,7 +44,7 @@ wss.on('connection', (ws) => {
        MongoClient.connect(urldb, (err, client) => {
   // Client returned
   var db = client.db('wsapp');
-        db.collection('users').updateMany({}, {$addToSet : {"score":0}});
+    //    db.collection('users').updateMany({}, {$addToSet : {"score":0}});
    db.collection('users').updateMany({[qn]:qres}, {$inc : {"score":1}});
            }); 
     }
