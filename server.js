@@ -32,14 +32,23 @@ wss.on('connection', (ws) => {
    var objm = mess;
     var obj=JSON.parse(objm);
     var mtype= obj.type;
-    var uname= obj.uname;
-    var qn= obj.qn;
-    var qres= obj.qres;
+   
     
     if(mtype=="am"){
- wss.broadcast(mess, ws);}
+ wss.broadcast(mess, ws);
+    }
+    
+    if(mtype=="ca"){
+        var qn= obj.qn;
+    var qres= obj.qres;
+        db.collection('users').updateMany({}, {$addToSet : {"score":0}});
+   db.collection('users').updateMany({[qn]:qres}, {$inc : {"score":1}});
+    }
 
 if(mtype=="ur"){
+   var uname= obj.uname;
+    var qn= obj.qn;
+    var qres= obj.qres;
   MongoClient.connect(urldb, (err, client) => {
   // Client returned
   var db = client.db('wsapp');
